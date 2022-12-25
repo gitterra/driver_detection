@@ -7,7 +7,7 @@ import shutil
 
 
 class Detector:
-    TRAIN_DIR = '/content/tools/yolo/yolov5ai/'
+    TRAIN_DIR = '/content/driver_detection/tools/yolo/yolov5ai/'
     url_weights = 'https://storage.yandexcloud.net/aiueducation/KAMAZ/models/yolo_from_framework/best_50.pt'
     weights = os.path.join(TRAIN_DIR, 'best.pt')
 
