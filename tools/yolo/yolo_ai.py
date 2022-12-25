@@ -39,12 +39,15 @@ class Detector:
             save_crop=True,
             conf=0.5
     ):
-        shutil.rmtree(os.path.join(
+        if os.path.exists(os.path.join(
           __class__.TRAIN_DIR,
-          'yolov5/runs/detect'))
-        os.mkdir(os.path.join(
-          __class__.TRAIN_DIR,
-          'yolov5/runs/detect'))
+          'yolov5/runs/detect')):
+            shutil.rmtree(os.path.join(
+              __class__.TRAIN_DIR,
+              'yolov5/runs/detect'))
+            os.mkdir(os.path.join(
+              __class__.TRAIN_DIR,
+              'yolov5/runs/detect'))
         target_name = f_name
         if start is not None and stop is not None:
             target_name = "/content/sourse.avi"
