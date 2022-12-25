@@ -7,7 +7,7 @@ import gdown
 
 class Worker:
     pre_encoder_url = 'https://storage.yandexcloud.net/aiueducation/KAMAZ/models/face_enc'
-    pre_encoder_file = '/content/tools/face_enc'
+    pre_encoder_file = '/content/driver_detection/tools/face_enc'
     drivers = {
         '01_Igor': 'Игорь',
         '02_Ilsaf': 'Ильсаф',
