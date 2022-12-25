@@ -27,7 +27,7 @@ class Worker:
             __class__.pre_encoder_file, "rb"
         ).read())
 
-    def identification(self, directory, count_image_for_analysis=20):
+    def identification(self, directory, count_image_for_analysis=200):
         """
         Функция идентификации водителя
 
@@ -39,7 +39,7 @@ class Worker:
         # Проверка существования указанной директории
         if os.path.isdir(directory):
             counts = {}  # Словарь, который будет сичтать количество совпадений для каждого водителя
-
+            cnt_find = 0
             # Берем первые count_image_for_analysis изображений
             for f in sorted(os.listdir(directory))[:count_image_for_analysis]:
                 # Открытие и преобразование изображения
@@ -52,7 +52,9 @@ class Worker:
                 # Если face_recognition не обнаружил лицо на изображении
                 if not encoding:
                     continue
-
+                cnt_find+=1
+                if cnt_find>=20:
+                    break
                 # Сравнение экнодинга изображения с энкодингами в базе
                 matches = face_recognition.compare_faces(self.data["encodings"], encoding[0])
 
@@ -72,6 +74,9 @@ class Worker:
             if current_driver in __class__.drivers:
                 return __class__.drivers[current_driver]
             else:
-                return max(counts, key=counts.get)
+                if counts:
+                    return max(counts, key=counts.get)
+                else:
+                    return 'Unknown'
         else:
             print(f'Директория {directory} не найдена')
