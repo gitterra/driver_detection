@@ -1,4 +1,4 @@
-from TerraYoloTest.TerraYolo import TerraYoloV5
+from TerraYolo.TerraYolo import TerraYoloV5
 from tools import bcolors
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 import os
