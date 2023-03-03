@@ -7,6 +7,7 @@ class Worker:
         self.index_class = 0
 
     def analysis(self, directory):
+        print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}НЕПРИСТЕГНУТЫЙ РЕМЕНЬ БЕЗОПАСНОСТИ', end='')
         result = []
         if os.path.isdir(directory):
             for f in sorted(os.listdir(directory)):
@@ -20,3 +21,5 @@ class Worker:
                 if not belt_exist:
                     result.append(int(re.findall('[0-9]+', f)[0]))
         return sorted(result)
+        print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+    
