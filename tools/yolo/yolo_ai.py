@@ -39,7 +39,6 @@ class Detector:
             save_crop=True,
             conf=0.5
     ):
-        print(f'{bcolors.OKBLUE}Этап №1. Обнаружение объектов', end='')
         if os.path.exists(os.path.join(
           __class__.TRAIN_DIR,
           'yolov5/runs/detect')):
@@ -63,5 +62,5 @@ class Detector:
         test_dict['source'] = target_name
         self.model.run(test_dict, exp_type='test')        
         display.clear_output(wait=True)
-        print(f'{bcolors.OKBLUE}Этап: Обнаружение объектов', end='')
+        print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}Обнаружение объектов', end='')
         print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
