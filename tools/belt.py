@@ -7,7 +7,7 @@ class Worker:
         self.index_class = 0
 
     def analysis(self, directory):
-        print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}РАСПОЗНАВАНИЕ СОНЛИВОСТИ', end='')
+        print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}НЕПРИСТЕГНУТЫЙ РЕМЕНЬ БЕЗОПАСНОСТИ', end='')
         try:
             result = []
             if os.path.isdir(directory):
