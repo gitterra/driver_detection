@@ -96,5 +96,5 @@ class Worker:
           result.append(int(re.findall('[0-9]+', n_file[0])[0]))      
       return result
     except:
-      print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+      print(f'{bcolors.ENDC}{bcolors.FAIL} Done{bcolors.ENDC}')
       return []
