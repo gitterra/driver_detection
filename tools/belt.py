@@ -24,7 +24,7 @@ class Worker:
             print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
             return sorted(result)
         except:
-            print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+            print(f'{bcolors.ENDC}{bcolors.FAIL} Done{bcolors.ENDC}')
             return []
     
     
