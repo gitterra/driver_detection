@@ -9,7 +9,7 @@ import cv2
 import dlib
 import re
 
-class Drowsiness:
+class Worker:
   weights_url = 'https://storage.yandexcloud.net/aiueducation/KAMAZ/models/face_enc'
   weights_file = '/content/yolo-master/shape_predictor_68_face_landmarks.dat'
     
