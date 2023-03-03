@@ -107,10 +107,16 @@ class Worker:
     return  result, mTOTAL                                                      # Возвращаем номера изображений (result) и количество инцидентов (mTOTAL)
 
   def analisys(self, directory):
-    result = []
-    # контроль микросна  
-    res, _ = self.microsleep(directory)
-    for n_file in res.items(): 
-      if n_file[1]:
-        result.append(int(re.findall('[0-9]+', n_file[0])[0]))
-    return result
+    print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}МИКРОСОН', end='')
+    try:
+      result = []
+      # контроль микросна  
+      res, _ = self.microsleep(directory)
+      for n_file in res.items(): 
+        if n_file[1]:
+          result.append(int(re.findall('[0-9]+', n_file[0])[0]))
+      print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+      return result
+    except:
+      print(f'{bcolors.ENDC}{bcolors.FAIL} Done{bcolors.ENDC}')
+      return []
