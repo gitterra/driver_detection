@@ -8,18 +8,23 @@ class Worker:
 
     def analysis(self, directory):
         print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}НЕПРИСТЕГНУТЫЙ РЕМЕНЬ БЕЗОПАСНОСТИ', end='')
-        result = []
-        if os.path.isdir(directory):
-            for f in sorted(os.listdir(directory)):
-                with open(f'{directory}/{f}', 'r') as fl:
-                    data = fl.read().split()
-                belt_exist = False
-                for i in range(0, len(data), 5):
-                    if int(data[i]) == self.index_class:
-                        belt_exist = True
-                        break
-                if not belt_exist:
-                    result.append(int(re.findall('[0-9]+', f)[0]))
-        print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
-        return sorted(result)
+        try:
+            result = []
+            if os.path.isdir(directory):
+                for f in sorted(os.listdir(directory)):
+                    with open(f'{directory}/{f}', 'r') as fl:
+                        data = fl.read().split()
+                    belt_exist = False
+                    for i in range(0, len(data), 5):
+                        if int(data[i]) == self.index_class:
+                            belt_exist = True
+                            break
+                    if not belt_exist:
+                        result.append(int(re.findall('[0-9]+', f)[0]))
+            print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+            return sorted(result)
+        except:
+            print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+            return []
+    
     
