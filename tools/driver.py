@@ -87,6 +87,5 @@ class Worker:
             else:
                 print(f'Директория {directory} не найдена')
         except:
-            print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+            print(f'{bcolors.ENDC}{bcolors.FAIL} Done{bcolors.ENDC}')
             return 'Unknown'
-        print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
