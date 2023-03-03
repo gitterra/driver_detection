@@ -1,6 +1,6 @@
 import os
 import re
-import bcolors
+from . import bcolors
 
 class Worker:
     def __init__(self):
