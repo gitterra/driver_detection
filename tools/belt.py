@@ -20,6 +20,6 @@ class Worker:
                         break
                 if not belt_exist:
                     result.append(int(re.findall('[0-9]+', f)[0]))
-        return sorted(result)
         print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+        return sorted(result)
     
