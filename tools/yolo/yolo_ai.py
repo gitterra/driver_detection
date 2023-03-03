@@ -63,5 +63,5 @@ class Detector:
         test_dict['source'] = target_name
         self.model.run(test_dict, exp_type='test')        
         display.clear_output(wait=True)
-        print(f'{bcolors.OKBLUE}Этап №1. Обнаружение объектов', end='')
+        print(f'{bcolors.OKBLUE}Этап: Обнаружение объектов', end='')
         print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
