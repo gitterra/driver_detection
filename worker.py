@@ -117,4 +117,5 @@ class Worker:
 
       # Show the graph
       plt.show()
-      print(intervals)
+      for key,value in intervals.items(): 
+            print(key, ':', value)
