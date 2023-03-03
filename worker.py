@@ -118,4 +118,4 @@ class Worker:
       # Show the graph
       plt.show()
       for key,value in intervals: 
-        print(f'   {bcolors.HEADER}{w.bcolors.BOLD}{key}:{bcolors.ENDC}{value}') 
+        print(f'   {bcolors.HEADER}{bcolors.BOLD}{key}:{bcolors.ENDC}{value}') 
