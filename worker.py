@@ -93,7 +93,7 @@ class Worker:
       categories = list(interval_dict.keys())
 
       # Create a figure and axis
-      fig, ax = plt.subplots(fig.size=(7, 30)
+      fig, ax = plt.subplots(figsize=(30, 7))
 
       # Set the y-ticks and labels
       ax.set_yticks(range(len(categories)))
