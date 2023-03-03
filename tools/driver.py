@@ -75,14 +75,18 @@ class Worker:
                 current_driver = max(counts, key=counts.get)
 
                 if current_driver in __class__.drivers:
+                    print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
                     return __class__.drivers[current_driver]
                 else:
                     if counts:
+                        print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
                         return max(counts, key=counts.get)
                     else:
+                        print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
                         return 'Unknown'
             else:
                 print(f'Директория {directory} не найдена')
         except:
+            print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
             return 'Unknown'
         print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
