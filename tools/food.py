@@ -1,5 +1,6 @@
 import os
 import re
+from . import bcolors
 
 
 class Worker:
