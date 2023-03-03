@@ -14,12 +14,10 @@ class Detector:
     def __init__(self):
         if not os.path.exists(__class__.TRAIN_DIR):
             os.mkdir(__class__.TRAIN_DIR)
-        print(f'{bcolors.OKBLUE}Первоначальная настройка системы', end='')
         self.model = TerraYoloV5(
             work_dir=__class__.TRAIN_DIR
         )
         self.load_weights()
-        print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
 
     @staticmethod
     def load_weights():
