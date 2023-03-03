@@ -87,13 +87,14 @@ class Worker:
     return  result, mTOTAL                                                      # Возвращаем  номера изображений (result) и количество инцидентов (mTOTAL)
 
   def analysis(self, directory):
-    print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}НЕПРИСТЕГНУТЫЙ РЕМЕНЬ БЕЗОПАСНОСТИ', end='')
+    print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}РАСПОЗНАВАНИЕ СОНЛИВОСТИ', end='')
     try:
       result=[]
       res, _ = self.yawning(directory, finish=len(os.listdir(directory)))
       for n_file in res.items(): 
         if n_file[1]:
           result.append(int(re.findall('[0-9]+', n_file[0])[0]))      
+      print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
       return result
     except:
       print(f'{bcolors.ENDC}{bcolors.FAIL} Done{bcolors.ENDC}')
