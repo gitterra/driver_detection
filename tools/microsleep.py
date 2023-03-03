@@ -107,7 +107,7 @@ class Worker:
             COUNTER = 0                                                         # Сброс счетчика кадров глаз 
     return  result, mTOTAL                                                      # Возвращаем номера изображений (result) и количество инцидентов (mTOTAL)
 
-  def analisys(self, directory):
+  def analysis(self, directory):
     print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}МИКРОСОН', end='')
     try:
       result = []
