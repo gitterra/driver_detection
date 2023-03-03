@@ -55,7 +55,7 @@ class Worker:
         intervals = [(round(interval[0], 1), round(interval[1], 1)) for interval in intervals]
         return intervals
       else:
-        return [(0,0)]
+        return [(0,0.01)]
     
     def show_result(self, data):
       print()
