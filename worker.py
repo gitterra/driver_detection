@@ -117,5 +117,5 @@ class Worker:
 
       # Show the graph
       plt.show()
-      for key,value in intervals.items(): 
-            print(f'{bcolors.OKCYAN}{bcolors.BOLD}{key}:{value}')
+      for key,value in intervals: 
+        print(f'   {w.bcolors.HEADER}{w.bcolors.BOLD}{key}:{w.bcolors.ENDC}{value}') 
