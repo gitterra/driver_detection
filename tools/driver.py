@@ -3,9 +3,10 @@ import cv2
 import os
 import face_recognition
 import gdown
+from . import bcolors
 
 
-class Worker:
+class Worker:    
     pre_encoder_url = 'https://storage.yandexcloud.net/aiueducation/KAMAZ/models/face_enc'
     pre_encoder_file = '/content/driver_detection/tools/face_enc'
     drivers = {
@@ -37,6 +38,7 @@ class Worker:
         """
 
         # Проверка существования указанной директории
+        print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}ИДЕНТИФИКАЦИЯ ВОДИТЕЛЯ', end='')
         if os.path.isdir(directory):
             counts = {}  # Словарь, который будет сичтать количество совпадений для каждого водителя
             cnt_find = 0
@@ -79,4 +81,5 @@ class Worker:
                 else:
                     return 'Unknown'
         else:
-            print(f'Директория {directory} не найдена')
+            print(f'Директория {directory} не найдена')        
+        print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
