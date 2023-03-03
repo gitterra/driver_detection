@@ -39,47 +39,50 @@ class Worker:
 
         # Проверка существования указанной директории
         print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}ИДЕНТИФИКАЦИЯ ВОДИТЕЛЯ', end='')
-        if os.path.isdir(directory):
-            counts = {}  # Словарь, который будет сичтать количество совпадений для каждого водителя
-            cnt_find = 0
-            # Берем первые count_image_for_analysis изображений
-            for f in sorted(os.listdir(directory))[:count_image_for_analysis]:
-                # Открытие и преобразование изображения
-                image = cv2.imread(f'{directory}/{f}')
-                rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        try:
+            if os.path.isdir(directory):
+                counts = {}  # Словарь, который будет сичтать количество совпадений для каждого водителя
+                cnt_find = 0
+                # Берем первые count_image_for_analysis изображений
+                for f in sorted(os.listdir(directory))[:count_image_for_analysis]:
+                    # Открытие и преобразование изображения
+                    image = cv2.imread(f'{directory}/{f}')
+                    rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-                # Получение эмбеддинга открытого изображения
-                encoding = face_recognition.face_encodings(rgb)
+                    # Получение эмбеддинга открытого изображения
+                    encoding = face_recognition.face_encodings(rgb)
 
-                # Если face_recognition не обнаружил лицо на изображении
-                if not encoding:
-                    continue
-                cnt_find+=1
-                if cnt_find>=20:
-                    break
-                # Сравнение экнодинга изображения с энкодингами в базе
-                matches = face_recognition.compare_faces(self.data["encodings"], encoding[0])
+                    # Если face_recognition не обнаружил лицо на изображении
+                    if not encoding:
+                        continue
+                    cnt_find+=1
+                    if cnt_find>=20:
+                        break
+                    # Сравнение экнодинга изображения с энкодингами в базе
+                    matches = face_recognition.compare_faces(self.data["encodings"], encoding[0])
 
-                name = "Unknown"  # Имя водителя
-                # Если сравнение энкодингов дало хотя бы одно совпадение
-                if True in matches:
-                    # Получаем индексы изображений в базе, которые совпали
-                    matched_idxs = [i for (i, b) in enumerate(matches) if b]
-                    # Для каждого индекса получаем имя водителя и вносим в словарь
-                    for i in matched_idxs:
-                        name = self.data["names"][i]
-                        counts[name] = counts.get(name, 0) + 1
+                    name = "Unknown"  # Имя водителя
+                    # Если сравнение энкодингов дало хотя бы одно совпадение
+                    if True in matches:
+                        # Получаем индексы изображений в базе, которые совпали
+                        matched_idxs = [i for (i, b) in enumerate(matches) if b]
+                        # Для каждого индекса получаем имя водителя и вносим в словарь
+                        for i in matched_idxs:
+                            name = self.data["names"][i]
+                            counts[name] = counts.get(name, 0) + 1
 
-            # Возвращаем имя водителя, который получил максимальное количество совпадений
-            current_driver = max(counts, key=counts.get)
+                # Возвращаем имя водителя, который получил максимальное количество совпадений
+                current_driver = max(counts, key=counts.get)
 
-            if current_driver in __class__.drivers:
-                return __class__.drivers[current_driver]
-            else:
-                if counts:
-                    return max(counts, key=counts.get)
+                if current_driver in __class__.drivers:
+                    return __class__.drivers[current_driver]
                 else:
-                    return 'Unknown'
-        else:
-            print(f'Директория {directory} не найдена')        
+                    if counts:
+                        return max(counts, key=counts.get)
+                    else:
+                        return 'Unknown'
+            else:
+                print(f'Директория {directory} не найдена')
+        except:
+            return 'Unknown'
         print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
