@@ -87,9 +87,14 @@ class Drowsiness:
     return  result, mTOTAL                                                      # Возвращаем  номера изображений (result) и количество инцидентов (mTOTAL)
 
   def analisys(self, directory):
-    result=[]
-    res, _ = self.yawning(directory, finish=len(os.listdir(directory)))
-    for n_file in res.items(): 
-      if n_file[1]:
-        result.append(int(re.findall('[0-9]+', n_file[0])[0]))
-    return result
+    print(f'{bcolors.OKBLUE}Этап: {bcolors.BOLD}НЕПРИСТЕГНУТЫЙ РЕМЕНЬ БЕЗОПАСНОСТИ', end='')
+    try:
+      result=[]
+      res, _ = self.yawning(directory, finish=len(os.listdir(directory)))
+      for n_file in res.items(): 
+        if n_file[1]:
+          result.append(int(re.findall('[0-9]+', n_file[0])[0]))      
+      return result
+    except:
+      print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
+      return []
