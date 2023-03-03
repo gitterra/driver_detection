@@ -4,7 +4,7 @@ from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 import os
 import gdown
 import shutil
-
+from IPython import display
 
 class Detector:
     TRAIN_DIR = '/content/driver_detection/tools/yolo/yolov5ai/'
@@ -39,6 +39,7 @@ class Detector:
             save_crop=True,
             conf=0.5
     ):
+        print(f'{bcolors.OKBLUE}Этап №1. Обнаружение объектов', end='')
         if os.path.exists(os.path.join(
           __class__.TRAIN_DIR,
           'yolov5/runs/detect')):
@@ -60,4 +61,7 @@ class Detector:
             test_dict['save-crop'] = ''
         test_dict['conf'] = conf
         test_dict['source'] = target_name
-        self.model.run(test_dict, exp_type='test')
+        self.model.run(test_dict, exp_type='test')        
+        display.clear_output(wait=True)
+        print(f'{bcolors.OKBLUE}Этап №1. Обнаружение объектов', end='')
+        print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')
