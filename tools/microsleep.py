@@ -9,6 +9,7 @@ import gdown
 import cv2
 import dlib
 import re
+from . import bcolors
 
 class Worker:
   weights_file = '/content/yolo-master/shape_predictor_68_face_landmarks.dat'
