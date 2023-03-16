@@ -5,7 +5,7 @@ tensorflow==2.11.0
 TerraYolo
 os
 gdown
-cv2
+cv2==4.6.0
 dlib
 re
 imutils
