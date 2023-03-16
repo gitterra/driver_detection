@@ -1,3 +1,12 @@
 face_recognition==1.2.3
 imageio-ffmpeg==0.4.7
+numpy==19.24.0
+tensorflow==2.11.0
 TerraYolo
+os
+gdown
+cv2
+dlib
+re
+imutils
+scipy
