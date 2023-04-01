@@ -19,7 +19,7 @@ class Worker:
       self.blur_detector = blur.Worker()
       self.smoking_detector = smoking.Worker()
       self.microsleep_detector = microsleep.Worker()
-      self.drowsiness_detector = drowsiness.Worker()()
+      self.drowsiness_detector = drowsiness.Worker()
       self.viewer_detector = viewer.Worker()
       self.directory = 'tools/yolo/yolov5ai/yolov5/runs/detect/exp'
       print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')    
