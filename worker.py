@@ -1,5 +1,5 @@
 from tools.yolo import yolo_ai
-from tools import belt, driver, drowsiness, food, microsleep, phone, smoking, bcolors, blur
+from tools import belt, driver, drowsiness, food, microsleep, phone, smoking, bcolors, blur, viewer
 import gdown
 import cv2
 from IPython import display
@@ -19,7 +19,8 @@ class Worker:
       self.blur_detector = blur.Worker()
       self.smoking_detector = smoking.Worker()
       self.microsleep_detector = microsleep.Worker()
-      self.drowsiness_detector = drowsiness.Worker()
+      self.drowsiness_detector = drowsiness.Worker()()
+      self.viewer_detector = viewer.Worker()
       self.directory = 'tools/yolo/yolov5ai/yolov5/runs/detect/exp'
       print(f'{bcolors.ENDC}{bcolors.OKGREEN} Done{bcolors.ENDC}')    
     
@@ -30,6 +31,7 @@ class Worker:
       self.fps = video.get(cv2.CAP_PROP_FPS)
       video.release()
       driver_name = self.driver_identification.identification(f'{self.directory}/crops/head')
+      viewer_data =  self.convert_to_interval(self.viewer_detector.analysis(f'{self.directory}/crops/head'))
       drowsiness_data = self.convert_to_interval(self.drowsiness_detector.analysis(f'{self.directory}/crops/head'))
       belt_data = self.convert_to_interval(self.belt_detector.analysis(f'{self.directory}/labels'))
       food_data = self.convert_to_interval(self.food_detector.analysis(f'{self.directory}/labels'))
@@ -38,7 +40,7 @@ class Worker:
       smoking_data = self.convert_to_interval(self.smoking_detector.analysis(f'{self.directory}/labels'))
       microsleep_data = self.convert_to_interval(self.microsleep_detector.analysis(f'{self.directory}/labels'))
       blur_data = self.convert_to_interval(self.blur_detector.analysis(f'{self.directory}/labels'))
-      self.show_result((driver_name, drowsiness_data, belt_data, food_data, phone_data, smoking_data, microsleep_data, blur_data))
+      self.show_result((driver_name, viewer_data, drowsiness_data, belt_data, food_data, phone_data, smoking_data, microsleep_data, blur_data))
 
     def convert_to_interval(self, data):
       if data:
@@ -64,6 +66,7 @@ class Worker:
       print(f'{bcolors.HEADER}{bcolors.BOLD}Результат обработки видеофайла{bcolors.ENDC}')
       print(f'  {bcolors.OKCYAN}{bcolors.BOLD}Водитель:{bcolors.ENDC} {data[0]}')
       color_list = [
+          '#72A71D',
           '#FC67BD',
           '#B15DE3',
           '#7673F9',
@@ -73,13 +76,14 @@ class Worker:
           '#DB2DE3'
           
       ]
-      intervals = [('Сонливость', data[1]), 
-                  ('Ремень', data[2]), 
-                  ('Прием пищи', data[3]), 
-                  ('Телефон', data[4]), 
-                  ('Курение', data[5]), 
-                  ('Микросон', data[6]), 
-                  ('Размытое изображение', data[7])
+      intervals = [('Отвлечение взгляда', data[1]), 
+                  ('Сонливость', data[2]), 
+                  ('Ремень', data[3]), 
+                  ('Прием пищи', data[4]), 
+                  ('Телефон', data[5]), 
+                  ('Курение', data[6]), 
+                  ('Микросон', data[7]), 
+                  ('Размытое изображение', data[8])
                   ]
       
       interval_dict = {}
@@ -93,7 +97,7 @@ class Worker:
       categories = list(interval_dict.keys())
 
       # Create a figure and axis
-      fig, ax = plt.subplots(figsize=(30, 7))
+      fig, ax = plt.subplots(figsize=(30, 8))
 
       # Set the y-ticks and labels
       ax.set_yticks(range(len(categories)))
